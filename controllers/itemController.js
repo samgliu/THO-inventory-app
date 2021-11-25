@@ -1,6 +1,8 @@
 var Category = require('../models/category');
 var Item = require('../models/item');
 var async = require('async');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 const { body, validationResult } = require('express-validator');
 
 var async = require('async');
@@ -67,6 +69,7 @@ exports.item_create_get = function (req, res, next) {
             }
             res.render('item_form', {
                 title: 'Create Item',
+                item: undefined,
                 categories: results.categories,
             });
         }

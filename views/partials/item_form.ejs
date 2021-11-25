@@ -1,5 +1,5 @@
 <h1><%= title %></h1>
-<form method="POST" action="">
+<form method="POST" action=""  enctype="multipart/form-data">
     <label for="item_name">Item Name</label>
     <input
         type="text"
@@ -23,7 +23,8 @@
         name="item_pic"
         value="<%= (item===undefined)? '': item.picture %>"
         required)
-    /><br />
+    /> 
+    <input type="file" name="item_pic_upload" /><br />
     <label for="category">Category</label>
     <select
         type="select"
@@ -32,13 +33,11 @@
         required
     >
         <% categories.forEach(function(category) { %>
-        <option
-            value="<%= category._id %>"
-            <%= 
-                (category._id.toString()==item.category._id || item._id.toString()==item.category) ? 'selected' : false
-            %>
-        >
-            <%= category.categoryName %>
+        <option value="<%= category._id %>" 
+            <% if (item!=undefined){ %>
+                <% (category._id.toString()==item.category._id ||item._id.toString()==item.category) ? 'selected' : false  %>
+            <% } %>
+        ><%= category.categoryName %>
         </option>
         <% }); %></select
     ><br />

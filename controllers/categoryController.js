@@ -53,7 +53,6 @@ exports.category_detail = function (req, res, next) {
                 return next(err);
             }
             // Successful, so render.
-            console.log(results.category_items);
             res.render('category_detail', {
                 title: 'Category Detail',
                 category: results.category,
@@ -81,7 +80,10 @@ exports.category_list = function (req, res, next) {
 
 // GET request for creating a Catetory. NOTE This must come before route that displays Category (uses id).
 exports.category_create_get = function (req, res, next) {
-    res.render('category_form', { title: 'Create Category' });
+    res.render('category_form', {
+        title: 'Create Category',
+        category: undefined,
+    });
 };
 
 //POST request for creating Category.

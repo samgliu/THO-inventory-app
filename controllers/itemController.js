@@ -175,6 +175,7 @@ exports.item_delete_get = function (req, res, next) {
             res.render('item_delete', {
                 title: 'Delete Item',
                 item: results.item,
+                errormsg: '',
             });
         }
     );
@@ -191,14 +192,27 @@ exports.item_delete_post = function (req, res, next) {
             if (err) {
                 return next(err);
             }
-            // Success
-            Item.findByIdAndRemove(req.body.itemid, function deleteItem(err) {
-                if (err) {
-                    return next(err);
-                }
-                // Success - go to author list
-                res.redirect('/catalog/items');
-            });
+            if (req.body.adminpassword !== process.env.ADMIN_PASSWORD) {
+                // password wrong
+                res.render('item_delete', {
+                    title: 'Delete Item',
+                    item: results.item,
+                    errormsg:
+                        'Password confirmation does not match password! Try default admin password: admin.',
+                });
+            } else {
+                // Success
+                Item.findByIdAndRemove(
+                    req.body.itemid,
+                    function deleteItem(err) {
+                        if (err) {
+                            return next(err);
+                        }
+                        // Success - go to author list
+                        res.redirect('/catalog/items');
+                    }
+                );
+            }
         }
     );
 };
@@ -232,6 +246,7 @@ exports.item_update_get = function (req, res, next) {
                 title: 'Update Item',
                 categories: results.categories,
                 item: results.item,
+                errors: [''],
             });
         }
     );
@@ -260,12 +275,19 @@ exports.item_update_post = [
         .isLength({ min: 1 })
         .escape(),
     body('category.*').escape(),
+    body('adminpassword').custom((value, { req }) => {
+        if (value !== process.env.ADMIN_PASSWORD) {
+            throw new Error(
+                'Password confirmation does not match password! Try default admin password: admin.'
+            );
+        }
+        return true;
+    }),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
         // Extract the validation errors from a request.
         const errors = validationResult(req);
-
         // Create a object with escaped and trimmed data.
         var item = new Item({
             itemName: req.body.item_name,
@@ -295,14 +317,15 @@ exports.item_update_post = [
                     // Mark our selected as checked.
                     for (let i = 0; i < results.categories.length; i++) {
                         if (
-                            item.category.indexOf(results.categories[i]._id) >
-                            -1
+                            item.category
+                                .toString()
+                                .indexOf(results.categories[i]._id) > -1
                         ) {
                             results.categories[i].checked = 'true';
                         }
                     }
                     res.render('item_form', {
-                        title: 'Create Item',
+                        title: 'Update Item',
                         categories: results.categories,
                         item: item,
                         errors: errors.array(),

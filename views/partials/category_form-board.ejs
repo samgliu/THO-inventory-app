@@ -17,7 +17,10 @@
         required/><br />
     <% if (title=="Create Category") { %>
     <label for="picture">Category Picture</label>
-    <input type="file" name="picture" value="<%= (category===undefined) ? '' : category.picture %>" /><br />
+    <input type="file" name="picture" value="<%= (category===undefined) ? '' : category.picture %>" required/><br />
+    <% } %>
+    <% if (category!=undefined) { %>
+        <img src="<%= category.picture %>" alt="" /><br />
     <% } %>
     <input type="submit" value="submit" />
 </form>

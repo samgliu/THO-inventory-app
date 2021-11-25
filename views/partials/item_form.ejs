@@ -1,5 +1,8 @@
 <h1><%= title %></h1>
 <form method="POST" action="" enctype="multipart/form-data">
+    <label for="adminpassword">Admin Password: </label>
+    <p> <%= errors[0].msg %> </p>
+    <input type="password" name="adminpassword" value="" required /> <br />
     <label for="item_name">Item Name</label>
     <input
         type="text"
@@ -18,9 +21,13 @@
     /><br />
     <% if (title=="Create Item") { %>
         <label for="picture">Item Picture</label>
-        <input type="file" name="picture" value="<%= (item===undefined)? '': item.picture %>" /><br />
+        <input type="file" name="picture" value="<%= (item===undefined)? '': item.picture %>" required/><br />
     <% } %>
-    
+
+    <% if (item!=undefined) { %>
+        <img src="<%= item.picture %>" alt=""/><br />
+        <input type="hidden" name="picture" value ="<%= item.picture %>" />
+    <% } %>
 
     <label for="category">Category</label>
     <select

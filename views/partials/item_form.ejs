@@ -1,5 +1,5 @@
 <h1><%= title %></h1>
-<form method="POST" action=""  enctype="multipart/form-data">
+<form method="POST" action="" enctype="multipart/form-data">
     <label for="item_name">Item Name</label>
     <input
         type="text"
@@ -16,15 +16,12 @@
         value="<%= (item===undefined)? '': item.description %>"
         required)
     /><br />
-    <label for="item_pic">Item Picture</label>
-    <input
-        type="text"
-        placeholder="item picture"
-        name="item_pic"
-        value="<%= (item===undefined)? '': item.picture %>"
-        required)
-    /> 
-    <input type="file" name="item_pic_upload" /><br />
+    <% if (title=="Create Item") { %>
+        <label for="picture">Item Picture</label>
+        <input type="file" name="picture" value="<%= (item===undefined)? '': item.picture %>" /><br />
+    <% } %>
+    
+
     <label for="category">Category</label>
     <select
         type="select"

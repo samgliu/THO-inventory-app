@@ -1,6 +1,7 @@
 var Category = require('../models/category');
 var Item = require('../models/item');
 var async = require('async');
+
 const { body, validationResult } = require('express-validator');
 
 var async = require('async');
@@ -88,16 +89,12 @@ exports.category_create_get = function (req, res, next) {
 
 //POST request for creating Category.
 exports.category_create_post = [
-    // Validate and santize the name field.
+    // Validate and sanitize the name field.
     body('category_name', 'category_pic required')
         .trim()
         .isLength({ min: 1 })
         .escape(),
     body('category_description', 'category_description required')
-        .trim()
-        .isLength({ min: 1 })
-        .escape(),
-    body('category_pic', 'category_pic required')
         .trim()
         .isLength({ min: 1 })
         .escape(),
@@ -111,9 +108,9 @@ exports.category_create_post = [
         var category = new Category({
             categoryName: req.body.category_name,
             description: req.body.category_description,
-            picture: req.body.category_pic,
+            picture: '/uploads/' + req.file.filename, //req.body.category_pic,
         });
-
+        //console.log(category);
         if (!errors.isEmpty()) {
             // There are errors. Render the form again with sanitized values/error messages.
             res.render('category_form', {
@@ -258,7 +255,7 @@ exports.category_update_post = [
         next();
     },
 
-    // Validate and santize the name field.
+    // Validate and sanitize the name field.
     body('category_name', 'category_pic required')
         .trim()
         .isLength({ min: 1 })
@@ -267,21 +264,16 @@ exports.category_update_post = [
         .trim()
         .isLength({ min: 1 })
         .escape(),
-    body('category_pic', 'category_pic required')
-        .trim()
-        .isLength({ min: 1 })
-        .escape(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
         // Extract the validation errors from a request.
         const errors = validationResult(req);
-
         // Create a category object with escaped and trimmed data.
         var category = new Category({
             categoryName: req.body.category_name,
             description: req.body.category_description,
-            picture: req.body.category_pic,
+            picture: req.body.picture,
             _id: req.params.id,
         });
 

@@ -1,8 +1,6 @@
 var Category = require('../models/category');
 var Item = require('../models/item');
 var async = require('async');
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 const { body, validationResult } = require('express-validator');
 
 var async = require('async');
@@ -90,10 +88,6 @@ exports.item_create_post = [
         .trim()
         .isLength({ min: 1 })
         .escape(),
-    body('item_pic', 'Picture must not be empty.')
-        .trim()
-        .isLength({ min: 1 })
-        .escape(),
     body('item_price', 'Price must not be empty.')
         .trim()
         .isLength({ min: 1 })
@@ -113,7 +107,7 @@ exports.item_create_post = [
         var item = new Item({
             itemName: req.body.item_name,
             description: req.body.item_description,
-            picture: req.body.item_pic,
+            picture: '/uploads/' + req.file.filename,
             category: req.body.category,
             price: req.body.item_price,
             quantity: req.body.item_quantity,
@@ -257,10 +251,6 @@ exports.item_update_post = [
         .trim()
         .isLength({ min: 1 })
         .escape(),
-    body('item_pic', 'Picture must not be empty.')
-        .trim()
-        .isLength({ min: 1 })
-        .escape(),
     body('item_price', 'Price must not be empty.')
         .trim()
         .isLength({ min: 1 })
@@ -280,7 +270,7 @@ exports.item_update_post = [
         var item = new Item({
             itemName: req.body.item_name,
             description: req.body.item_description,
-            picture: req.body.item_pic,
+            picture: req.body.picture,
             category: req.body.category,
             price: req.body.item_price,
             quantity: req.body.item_quantity,

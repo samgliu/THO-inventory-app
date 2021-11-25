@@ -1,0 +1,16 @@
+<h1><%= title %></h1>
+<p><%= category.categoryName %></p>
+<p><%= category.description %></p>
+<a href="<%= category.url + "/update" %>">Update Category</a>
+<a href="<%= category.url + "/delete" %>">Delete Category</a><br />
+<img src="<%= category.picture %>" alt="" />
+
+<h4>Items:</h4>
+<ul>
+    <% category_items.forEach(function(item) { %>
+    <li>
+        <div><%- include('item_detail', {item: item}); %></div>
+    </li>
+    <% }); %>
+</ul>
+

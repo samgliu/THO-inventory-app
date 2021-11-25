@@ -1,0 +1,14 @@
+<p>
+    <a href="<%= item.url %>"><%= item.itemName %></a>
+</p>
+<a href="<%= item.url + "/update" %>">Update Item</a>
+<a href="<%= item.url + "/delete" %>">Delete Item</a>
+<p><%= item.description %></p>
+<img src="<%= item.picture %>" alt="" />
+<p>
+    Category:
+    <a href="<%= item.category.url %>"><%= item.category.categoryName %></a>
+</p>
+<p>Price: <%= item.price %></p>
+<p>Quantity: <%= item.quantity %></p>
+

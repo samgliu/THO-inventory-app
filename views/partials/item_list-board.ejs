@@ -1,0 +1,8 @@
+<h1><%= title %></h1>
+<ul>
+    <% item_list.forEach(function(item) { %>
+    <li>
+        <div><%- include('item_detail', {item: item}); %></div>
+    </li>
+    <% }); %>
+</ul>

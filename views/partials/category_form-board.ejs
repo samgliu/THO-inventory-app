@@ -1,0 +1,28 @@
+<h1><%= title %></h1>
+<form method="POST" action="">
+    <label for="category_name">Category Name</label>
+    <input
+        type="text"
+        placeholder="category name"
+        name="category_name"
+        value="<%= (category===undefined)? '': category.categoryName %>"
+        required)
+    /><br />
+    <label for="category_description">Category Description</label>
+    <input
+        type="text"
+        placeholder="category description"
+        name="category_description"
+        value="<%= (category===undefined)? '': category.description %>"
+        required)
+    /><br />
+    <label for="category_pic">Category Picture</label>
+    <input
+        type="text"
+        placeholder="category picture"
+        name="category_pic"
+        value="<%= (category===undefined)? '': category.picture %>"
+        required)
+    /><br />
+    <input type="submit" value="submit" />
+</form>

@@ -1,0 +1,12 @@
+<h1><%= title %></h1>
+<ul>
+    <% category_list.forEach(function(category) { %>
+    <li>
+        <p>
+            <a href="<%= category.url %>"><%= category.categoryName %></a>
+        </p>
+        <p><%= category.description %></p>
+        <img src="<%= category.picture %>" alt="" />
+    </li>
+    <% }); %>
+</ul>

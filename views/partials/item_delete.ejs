@@ -1,0 +1,7 @@
+<h1><%= title %>: <%= item.itemName %></h1>
+<p>Do you really want to delete this Item?</p>
+
+<form method="POST" action="">
+    <input type="hidden" name="itemid" value="<%= item._id %>" required />
+    <button type="submit">Delete</button>
+</form>

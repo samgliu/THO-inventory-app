@@ -1,9 +1,9 @@
 <h1><%= title %>: <%= item.itemName %></h1>
 <p>Do you really want to delete this Item?</p>
-<p><%= errormsg %></p>
 <form method="POST" action="">
     <input type="hidden" name="itemid" value="<%= item._id %>" required />
-    <label for="adminpassword">Admin Password: </label>
+    <label  class="admin-color" for="adminpassword">Admin Password: </label>
     <input type="password" name="adminpassword" value="" required /> <br />
-    <button type="submit">Delete</button>
+    <button class="delete-button" type="submit">Delete</button>
+    <p class="alert"><%= errormsg %></p>
 </form>

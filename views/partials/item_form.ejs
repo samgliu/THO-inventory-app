@@ -1,26 +1,28 @@
 <h1><%= title %></h1>
 <form method="POST" action="" enctype="multipart/form-data">
-    <label for="adminpassword">Admin Password: </label>
-    <input type="password" name="adminpassword" value="" required /> <br />
-    <p> <%= errors[0].msg %> </p>
-    <label for="item_name">Item Name</label>
+    <% if (item!=undefined) { %>
+        <label class="admin-color" for="adminpassword">Admin Password: </label>
+        <input type="password" name="adminpassword" value="" required /> <br />
+    <% } %>
+    <p class="alert"> <%= errors[0].msg %> </p>
+    <label for="item_name">Name:</label>
     <input
         type="text"
-        placeholder="item name"
+        placeholder="name"
         name="item_name"
         value="<%= (item===undefined)? '': item.itemName %>"
         required)
     /><br />
-    <label for="item_description">Item Description</label>
+    <label for="item_description">Description:</label>
     <input
         type="text"
-        placeholder="item description"
+        placeholder="description"
         name="item_description"
         value="<%= (item===undefined)? '': item.description %>"
         required)
     /><br />
     <% if (title=="Create Item") { %>
-        <label for="picture">Item Picture</label>
+        <label for="picture">Picture</label>
         <input type="file" name="picture" value="<%= (item===undefined)? '': item.picture %>" required/><br />
     <% } %>
 
@@ -29,7 +31,7 @@
         <input type="hidden" name="picture" value ="<%= item.picture %>" />
     <% } %>
 
-    <label for="category">Category</label>
+    <label for="category">Category:</label>
     <select
         type="select"
         placeholder="select category"
@@ -45,21 +47,21 @@
         </option>
         <% }); %></select
     ><br />
-    <label for="item_price">Item Price</label>
+    <label for="item_price">Price:</label>
     <input
         type="number"
         step="0.01"
         min="0"
-        placeholder="item price"
+        placeholder="price"
         name="item_price"
         value="<%= (item===undefined)? '': item.price %>"
         required)
     /><br />
-    <label for="item_quantity">Item Quantity</label>
+    <label for="item_quantity">Quantity:</label>
     <input
         type="number"
         min="0"
-        placeholder="item quantity"
+        placeholder="quantity"
         name="item_quantity"
         value="<%= (item===undefined)? '': item.quantity %>"
         required)

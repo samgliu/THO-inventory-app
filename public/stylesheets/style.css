@@ -143,7 +143,7 @@ img {
     flex-direction: column;
     width: 100vw;
     align-items: stretch;
-    line-height: 1.4em;
+    line-height: 2em;
     padding-left: 1em;
     padding-bottom: 2em;
     color: var(--cnBlack);
@@ -163,6 +163,21 @@ img {
     color: white;
     border: none;
 }
+.delete-button {
+    padding: 5px 10px 5px 10px;
+    border-radius: 0.25em;
+    background: var(--cnRed);
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    border: none;
+}
 form {
     padding: 1em;
+}
+.admin-color {
+    color: var(--cnRed);
+}
+.alert {
+    color: var(--cnRed);
 }

@@ -1,8 +1,11 @@
 <p>
     <a href="<%= item.url %>"><%= item.itemName %></a>
 </p>
-<a href="<%= item.url + "/update" %>">Update Item</a>
-<a href="<%= item.url + "/delete" %>">Delete Item</a>
+<div>
+    <a class="update" href="<%= item.url + "/update" %>">Update Item</a>
+    <a class="delete" href="<%= item.url + "/delete" %>">Delete Item</a>
+</div>
+
 <p><%= item.description %></p>
 <img src="<%= item.picture %>" alt="" />
 <p>

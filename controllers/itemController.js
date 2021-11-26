@@ -69,6 +69,7 @@ exports.item_create_get = function (req, res, next) {
                 title: 'Create Item',
                 item: undefined,
                 categories: results.categories,
+                errors: [''],
             });
         }
     );

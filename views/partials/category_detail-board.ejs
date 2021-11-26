@@ -1,8 +1,11 @@
 <h1><%= title %></h1>
-<p><%= category.categoryName %></p>
+<h4><%= category.categoryName %></h4>
 <p><%= category.description %></p>
-<a href="<%= category.url + "/update" %>">Update Category</a>
-<a href="<%= category.url + "/delete" %>">Delete Category</a><br />
+<div>
+    <a  class="update" href="<%= category.url + "/update" %>">Update Category</a>
+    <a  class="delete" href="<%= category.url + "/delete" %>">Delete Category</a>
+</div>
+
 <img src="<%= category.picture %>" alt="" />
 
 <h4>Items:</h4>

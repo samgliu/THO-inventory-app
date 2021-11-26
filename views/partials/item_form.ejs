@@ -1,8 +1,8 @@
 <h1><%= title %></h1>
 <form method="POST" action="" enctype="multipart/form-data">
     <label for="adminpassword">Admin Password: </label>
-    <p> <%= errors[0].msg %> </p>
     <input type="password" name="adminpassword" value="" required /> <br />
+    <p> <%= errors[0].msg %> </p>
     <label for="item_name">Item Name</label>
     <input
         type="text"
@@ -65,5 +65,5 @@
         required)
     /><br />
 
-    <input type="submit" value="submit" />
+    <input class="button" type="submit" value="submit" />
 </form>
